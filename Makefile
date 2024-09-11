@@ -1,7 +1,7 @@
 .PHONY: run dev
 
 run:
-	python run.py
+	python -c "import run; run.run();"
 
 dev:
-	python devrun.py
+	python -c "import run; run.devrun()"

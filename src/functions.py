@@ -63,6 +63,7 @@ def analyze_directories(directories, size_threshold, units):
     size_threshold_in_bytes = size_threshold * unit_multiplier[units]
 
     for directory in directories:
+        assert os.path.isdir(directory), "Directory %s does not exist" % directory
         total_size_bytes = 0
         file_count = 0
         large_file_count = 0

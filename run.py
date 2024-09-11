@@ -2,9 +2,9 @@ import pandas as pd
 from src import functions, utils
 
 
-def main():
+def run(config_path="config.yaml"):
     # Load configuration
-    config = utils.load_config("config.yaml")
+    config = utils.load_config(config_path=config_path)
     directories = config["directories"]
     size_threshold = config["file_size_threshold"]
     units = config["units"]
@@ -20,5 +20,5 @@ def main():
     file_df.to_csv("file_summary.csv", index=False)
 
 
-if __name__ == "__main__":
-    main()
+def devrun():
+    run(config_path="dev_config.yaml")

@@ -19,6 +19,5 @@ make run
 - `run.py`: Entry point to execute the analysis.
 - `config.yaml`: Configuration file specifying directories and thresholds.
 - `Makefile`: Allows running the project with `make`.
-- `src/dir_functions.py`: Directory-related analysis functions.
-- `src/file_functions.py`: File-related analysis functions.
+- `src/functions.py`: File and directory extraction functions.
 - `src/utils.py`: Utility functions, such as reading `config.yaml`.
