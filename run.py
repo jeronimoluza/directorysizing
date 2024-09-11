@@ -2,7 +2,7 @@ import pandas as pd
 from src import functions, utils
 
 
-def run(config_path="config.yaml"):
+def run(config_path="configs/config.yaml"):
     # Load configuration
     config = utils.load_config(config_path=config_path)
     directories = config["directories"]
@@ -21,4 +21,4 @@ def run(config_path="config.yaml"):
 
 
 def devrun():
-    run(config_path="dev_config.yaml")
+    run(config_path="configs/dev_config.yaml")
