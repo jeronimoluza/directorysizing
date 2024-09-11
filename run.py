@@ -10,7 +10,8 @@ def run(config_path="configs/config.yaml"):
     units = config["units"]
 
     # Analyze directories
-    dir_data, file_data = functions.analyze_directories(
+    # dir_data, file_data = functions.analyze_directories(
+    dir_data, file_data = functions.analyze_s3_buckets(
         directories, size_threshold, units
     )
     dir_df = pd.DataFrame(dir_data)
