@@ -68,4 +68,6 @@ def analyze_directories(directories, size_threshold, units):
         )
         dir_id += 1
 
+        print("Finished processing directory: %s" % directory)
+
     return dir_summary, file_summary
