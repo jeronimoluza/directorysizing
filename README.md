@@ -7,7 +7,7 @@ This project analyzes the sizes and counts of files within directories specified
 
 ## How to Run
 
-1. Specify directories and size thresholds in `config.yaml`.
+1. Specify directories and size thresholds in `configs/config.yaml`.
 2. Run the project with:
 
 ```bash
@@ -17,7 +17,7 @@ make run
 ## Project Structure
 
 - `run.py`: Entry point to execute the analysis.
-- `config.yaml`: Configuration file specifying directories and thresholds.
+- `configs/config.yaml`: Configuration file specifying directories and thresholds.
 - `Makefile`: Allows running the project with `make`.
 - `src/functions.py`: File and directory extraction functions.
 - `src/utils.py`: Utility functions, such as reading `config.yaml`.
