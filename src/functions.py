@@ -1,5 +1,6 @@
 import os
 from src import utils
+from tqdm import tqdm
 
 
 def analyze_directories(directories, size_threshold, units):
@@ -21,8 +22,12 @@ def analyze_directories(directories, size_threshold, units):
         file_count = 0
         large_file_count = 0
 
+        print("Walking directory structure: %s" % directory)
+        print("This may take a moment...")
         for root, _, files in os.walk(directory):
-            for file in files:
+            print("Fetching file data")
+            total = len(files)
+            for file in tqdm(files, total=total):
                 file_path = os.path.join(root, file)
                 if not os.path.isfile(file_path):
                     continue
