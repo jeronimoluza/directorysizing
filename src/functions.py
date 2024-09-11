@@ -95,9 +95,13 @@ def analyze_s3_buckets(buckets, size_threshold, units):
         file_count = 0
         large_file_count = 0
 
+        print("Walking S3 bucket: %s" % s3_path)
+        print("This may take a moment...")
         paginator = s3_client.get_paginator("list_objects_v2")
-        pages = paginator.paginate(Bucket=bucket_name, Prefix=prefix)
+        pages_generator = paginator.paginate(Bucket=bucket_name, Prefix=prefix)
 
+        pages = list(pages_generator)
+        print("Fetching file data")
         for page in pages:
             if "Contents" not in page:
                 continue
@@ -143,3 +147,31 @@ def analyze_s3_buckets(buckets, size_threshold, units):
         dir_id += 1  # Increment directory ID
 
     return dir_summary, file_summary
+
+
+def analyze_paths(paths, size_threshold, units):
+    s3_paths = [path for path in paths if path.startswith("s3://")]
+    local_paths = [
+        path
+        for path in paths
+        if (not path.startswith("s3://")) and (os.path.isdir(path))
+    ]
+
+    dirs_buckets_summaries = []
+    file_summaries = []
+
+    if s3_paths:
+        for s3_path in s3_paths:
+            s3_buckets_summary, s3_file_summary = analyze_s3_buckets(
+                s3_path, size_threshold, units
+            )
+            dirs_buckets_summaries.extend(s3_buckets_summary)
+            file_summaries.extend(s3_file_summary)
+
+    if local_paths:
+        for path in local_paths:
+            dir_summary, file_summary = analyze_directories(path, size_threshold, units)
+            dirs_buckets_summaries.extend(dir_summary)
+            file_summaries.extend(file_summary)
+
+    return dirs_buckets_summaries, file_summaries
