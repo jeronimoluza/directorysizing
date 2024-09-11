@@ -24,9 +24,7 @@ def analyze_directories(directories, size_threshold, units):
         large_file_count = 0
 
         print("Walking directory structure: %s" % directory)
-        print("This may take a moment...")
         tuples = list(os.walk(directory))
-        print("Fetching file data")
         for root, _, files in tqdm(tuples):
             for file in files:
                 file_path = os.path.join(root, file)
@@ -96,12 +94,9 @@ def analyze_s3_buckets(buckets, size_threshold, units):
         large_file_count = 0
 
         print("Walking S3 bucket: %s" % s3_path)
-        print("This may take a moment...")
         paginator = s3_client.get_paginator("list_objects_v2")
-        pages_generator = paginator.paginate(Bucket=bucket_name, Prefix=prefix)
+        pages = paginator.paginate(Bucket=bucket_name, Prefix=prefix)
 
-        pages = list(pages_generator)
-        print("Fetching file data")
         for page in pages:
             if "Contents" not in page:
                 continue
