@@ -1,0 +1,5 @@
+directories:
+  - /path/to/directory1
+  - /path/to/directory2
+file_size_threshold: 100  # X, the file size in units
+units: MB  # U, the units to be used (MB, GB, TB)
