@@ -161,17 +161,17 @@ def analyze_paths(paths, size_threshold, units):
     file_summaries = []
 
     if s3_paths:
-        for s3_path in s3_paths:
-            s3_buckets_summary, s3_file_summary = analyze_s3_buckets(
-                s3_path, size_threshold, units
-            )
-            dirs_buckets_summaries.extend(s3_buckets_summary)
-            file_summaries.extend(s3_file_summary)
+        s3_buckets_summary, s3_file_summary = analyze_s3_buckets(
+            s3_paths, size_threshold, units
+        )
+        dirs_buckets_summaries.extend(s3_buckets_summary)
+        file_summaries.extend(s3_file_summary)
 
     if local_paths:
-        for path in local_paths:
-            dir_summary, file_summary = analyze_directories(path, size_threshold, units)
-            dirs_buckets_summaries.extend(dir_summary)
-            file_summaries.extend(file_summary)
+        dir_summary, file_summary = analyze_directories(
+            local_paths, size_threshold, units
+        )
+        dirs_buckets_summaries.extend(dir_summary)
+        file_summaries.extend(file_summary)
 
     return dirs_buckets_summaries, file_summaries
