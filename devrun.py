@@ -4,7 +4,7 @@ from src import functions, utils
 
 def main():
     # Load configuration
-    config = utils.load_config("config.yaml")
+    config = utils.load_config("dev_config.yaml")
     directories = config["directories"]
     size_threshold = config["file_size_threshold"]
     units = config["units"]

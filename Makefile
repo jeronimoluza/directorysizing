@@ -1,4 +1,7 @@
-.PHONY: run
+.PHONY: run dev
 
 run:
-    python run.py
+	python run.py
+
+dev:
+	python devrun.py
