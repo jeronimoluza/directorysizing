@@ -123,7 +123,7 @@ def analyze_s3_buckets(buckets, size_threshold, units):
                         "file_size_h": utils.human_readable_size(file_size_bytes),
                         "parent_directory": "/".join(file_key.split("/")[:-1]),
                         "file_path": f"s3://{bucket_name}/{file_key}",
-                        "source_folder": f"s3://{bucket_name}",
+                        "source_folder": f"s3://{bucket_name}/{prefix}",
                         "dir_id": dir_id,
                     }
                 )
