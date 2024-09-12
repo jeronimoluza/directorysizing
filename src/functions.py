@@ -107,6 +107,12 @@ def analyze_s3_buckets(buckets, size_threshold, units):
                 file_key = obj["Key"]
                 file_name = file_key.split("/")[-1]
 
+                # This is to avoid directories being passed as files
+                # Directories tried to be passed as files will have file_name == NaN
+                # type(NaN) = float, so:
+                if not type(file_name) == str:
+                    continue
+
                 # Accumulate bucket-level data
                 total_size_bytes += file_size_bytes
                 file_count += 1
