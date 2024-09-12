@@ -2,6 +2,7 @@ import os
 import boto3
 from src import utils
 from tqdm import tqdm
+import numpy as np
 
 
 def analyze_directories(directories, size_threshold, units):
@@ -105,7 +106,7 @@ def analyze_s3_buckets(buckets, size_threshold, units):
                 file_size_bytes = obj["Size"]
                 file_key = obj["Key"]
                 file_name = file_key.split("/")[-1]
-                if file_name is None:
+                if file_name is np.nan:
                     continue
 
                 # Accumulate bucket-level data
