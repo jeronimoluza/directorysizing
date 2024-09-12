@@ -108,9 +108,9 @@ def analyze_s3_buckets(buckets, size_threshold, units):
                 file_name = file_key.split("/")[-1]
 
                 # This is to avoid directories being passed as files
-                # Directories tried to be passed as files will have file_name == NaN
-                # type(NaN) = float, so:
-                if file_name == "":
+                # Directories tried to be passed as files will have file_name == ''
+                # So:
+                if not file_name:
                     continue
 
                 # Accumulate bucket-level data
