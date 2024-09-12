@@ -104,6 +104,9 @@ def analyze_s3_buckets(buckets, size_threshold, units):
             for obj in page["Contents"]:
                 file_size_bytes = obj["Size"]
                 file_key = obj["Key"]
+                file_name = file_key.split("/")[-1]
+                if file_name is None:
+                    continue
 
                 # Accumulate bucket-level data
                 total_size_bytes += file_size_bytes
@@ -117,7 +120,7 @@ def analyze_s3_buckets(buckets, size_threshold, units):
                 file_summary.append(
                     {
                         "file_id": file_id,  # Add unique ID for each file
-                        "file_name": file_key.split("/")[-1],
+                        "file_name": file_name,
                         "file_size_bytes": file_size_bytes,
                         "file_size_h": utils.human_readable_size(file_size_bytes),
                         "parent_directory": "/".join(file_key.split("/")[:-1]),
