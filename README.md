@@ -1,9 +1,9 @@
 # Directory and File Size Analyzer
 
-This project analyzes the sizes and counts of files within directories specified in `config.yaml` and outputs two CSV files:
+This project analyzes the sizes and counts of files within directories and S3 buckets specified in `config.yaml` and outputs two CSV files:
 
-- `directory_summary.csv`: Summarizes file counts and total sizes per directory.
-- `file_summary.csv`: Lists file sizes and their parent directories.
+- `directory_summary.csv`: Summarizes file counts and total sizes per folder.
+- `file_summary.csv`: Lists file sizes and their parent folder.
 
 ## How to Run
 
