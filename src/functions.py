@@ -106,8 +106,6 @@ def analyze_s3_buckets(buckets, size_threshold, units):
                 file_size_bytes = obj["Size"]
                 file_key = obj["Key"]
                 file_name = file_key.split("/")[-1]
-                if np.isnan(file_name):
-                    continue
 
                 # Accumulate bucket-level data
                 total_size_bytes += file_size_bytes
